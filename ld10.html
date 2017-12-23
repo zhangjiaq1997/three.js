@@ -129,7 +129,7 @@
                 scene.add( ringCirc );
 
                 // 创建条形立方体
-                var cubeGeometry = new THREE.BoxGeometry(60, 3, 5);
+                /**var cubeGeometry = new THREE.BoxGeometry(60, 3, 5);
 		        var cubeMaterial = new THREE.MeshLambertMaterial({color: 0x0b7799,transparent:true});
 		        cubeMaterial.opacity = 0.6;
 		        cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
@@ -148,7 +148,7 @@
 		        cube.position.y = 50;
 		        cube.position.z = 0;
 		        cube.rotation.z = -0.15;
-		        scene.add(cube);
+		        scene.add(cube);*/
 
                 var minw = 1200;
                 var r = minw/10.8;
@@ -168,6 +168,28 @@
                 fiveHandler(0x0b7799,r*0.75,r,Math.PI*0.14,5.7);
                 var r = minw/11.3;
                 fiveHandler4(0x0b7799,r*0.8,r-3,Math.PI*0.393,8.1);
+	
+		//新加画线功能
+		for(var i=0;i<100;i++) {
+		    var geometryLine = new THREE.Geometry();
+		    var materialLine = new THREE.LineBasicMaterial({
+			vertexColors: true
+		    });
+		    var color1 = new THREE.Color(0x444444),
+			color2 = new THREE.Color(0xFF0000);
+		    //线的材质可以由两点的颜色决定
+		    var p1 = new THREE.Vector3();
+		    var p2 = new THREE.Vector3();
+		    p1.set(0, 0, 0);
+		    p2.set(-190, 21+(i*7), -100);
+		    geometryLine.vertices.push(p1);
+		    geometryLine.vertices.push(p2);
+		    geometryLine.colors.push(color1, color2);
+
+		    var line = new THREE.Line(geometryLine, materialLine, THREE.LinePieces);
+		    //将线条添加到场景中
+		    scene.add(line);
+		}
 
                 var r = minw/10;
                 fiveHandler3(0x0b7799,r*0.665,r-46,Math.PI*2,0);
